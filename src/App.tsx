@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
-import DisplayTime from "./components/atoms/display-time";
 import styled from "styled-components";
+import { getNames } from "./apis/NamesAPI";
+import { iNestedNames } from "./models/NestedNames";
+import NamesList from "./components/organisms/names-list";
 
 const AppWrapperDiv = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: auto;
 `;
 
 function App() {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+  const [names, setNames] = useState<iNestedNames>([]);
 
-    return () => {
-      clearInterval(interval);
-    };
+  useEffect(() => {
+    getNames().then((namesResponse) => {
+      setNames(namesResponse);
+    });
   }, []);
+
   return (
     <AppWrapperDiv className="App">
-      <DisplayTime time={currentDate} />
+      <NamesList names={names} />
     </AppWrapperDiv>
   );
 }

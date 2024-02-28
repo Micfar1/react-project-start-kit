@@ -5,6 +5,7 @@ import App from "./App";
 import "./index.css";
 import { store } from "./store/store";
 import { ThemeWrapper } from "./theme/theme";
+import { getNames } from "./apis/NamesAPI";
 
 const container = document.getElementById("root");
 
