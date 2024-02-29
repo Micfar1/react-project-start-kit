@@ -1,9 +1,10 @@
 import { iAtlassianResponse } from "../../../models/Atlassian";
 
-export const getTopicListStr = (
+export const getPrependedChar = (
   topicItem: iAtlassianResponse,
   collapsed: boolean
 ) => {
-  if (!topicItem.children) return `• ${topicItem.name}`;
-  return collapsed ? `▶ ${topicItem.name}` : `▼ ${topicItem.name}`;
+  if (!topicItem.children) return "•";
+  if (collapsed) return "▶";
+  return "▼";
 };

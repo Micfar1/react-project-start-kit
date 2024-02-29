@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getAtlassionData } from "./apis/AtlassianAPI";
 import { iAtlassianResponses } from "./models/Atlassian";
-import NamesList from "./components/organisms/topics-list";
+import TopicsList from "./components/organisms/topics-list";
 
 const AppWrapperDiv = styled.div`
   height: 100%;
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <AppWrapperDiv className="App">
-      <NamesList topics={atlassianItems} />
+      <TopicsList topics={atlassianItems} />
     </AppWrapperDiv>
   );
 }

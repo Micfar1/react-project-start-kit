@@ -4,12 +4,13 @@ import {
   iAtlassianResponses,
 } from "../../../models/Atlassian";
 import styled from "styled-components";
-import { getTopicListStr } from "./utils";
+import { getPrependedChar } from "./utils";
 
 const ListWrapper = styled.ul`
   list-style: none;
 
   p {
+    display: flex;
     padding: 1em;
     border-radius: 10px;
     white-space: nowrap;
@@ -18,6 +19,11 @@ const ListWrapper = styled.ul`
   p:hover {
     background: #efefefef;
     cursor: pointer;
+  }
+
+  span {
+    display: block;
+    width: 20px;
   }
 `;
 
@@ -43,7 +49,7 @@ const TopicsList = ({ topics }: iTopicsList) => {
   return (
     <ListWrapper>
       {topics.map((item: iAtlassianResponse, index) => {
-        let topicstr = getTopicListStr(item, collapsedArray[index]);
+        const collapsed = collapsedArray[index];
 
         return (
           <li key={item.id}>
@@ -52,11 +58,11 @@ const TopicsList = ({ topics }: iTopicsList) => {
                 handleClick(e, index);
               }}
             >
-              {topicstr}
+              <span>{getPrependedChar(item, collapsed)}</span> {item.name}
             </p>
-            {collapsedArray[index] !== undefined &&
-              !collapsedArray[index] &&
-              item.children && <TopicsList topics={item.children} />}
+            {collapsed !== undefined && !collapsed && item.children && (
+              <TopicsList topics={item.children} />
+            )}
           </li>
         );
       })}

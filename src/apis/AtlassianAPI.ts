@@ -3,8 +3,8 @@ import { iAtlassianResponses } from "../models/Atlassian";
 
 export const getAtlassionData = async (): Promise<iAtlassianResponses> => {
   try {
-    const names: iAtlassianResponses = await fetchData();
-    return names;
+    const atlassianResponses: iAtlassianResponses = await fetchData();
+    return atlassianResponses;
   } catch (error) {
     console.error(error);
   }

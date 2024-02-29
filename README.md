@@ -9,9 +9,8 @@ A starter kit that can be used for future react projects. The goal is to have a 
 
 # Strategy
 
-1. Create models in typescript. X
-2. Create API call. X
-3. Get data into redux. X
-4. Create a new component that is able to display a list. X
-5. Create a component that is able to dispaly lists within list.
-   - Make responsive
+- [x] Create models in typescript.
+- [x] Create API call.
+- [x] Get data into redux.
+- [x] Create a new component that is able to display a list.
+- [x] Create a component that is able to display lists within list.
