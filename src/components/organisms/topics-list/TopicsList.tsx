@@ -1,7 +1,10 @@
 import React, { MouseEvent, useEffect, useState } from "react";
-import { iNestedName, iNestedNames } from "../../../models/NestedNames";
+import {
+  iAtlassianResponse,
+  iAtlassianResponses,
+} from "../../../models/Atlassian";
 import styled from "styled-components";
-import { getNameStr } from "./utils";
+import { getTopicListStr } from "./utils";
 
 const ListWrapper = styled.ul`
   list-style: none;
@@ -18,11 +21,11 @@ const ListWrapper = styled.ul`
   }
 `;
 
-interface iNamesList {
-  names: iNestedNames;
+interface iTopicsList {
+  topics: iAtlassianResponses;
 }
 
-const NamesList = ({ names }: iNamesList) => {
+const TopicsList = ({ topics }: iTopicsList) => {
   const [collapsedArray, setCollapsedArray] = useState<boolean[]>([]);
 
   const handleClick = (e: MouseEvent<HTMLParagraphElement>, index: number) => {
@@ -33,29 +36,27 @@ const NamesList = ({ names }: iNamesList) => {
   };
 
   useEffect(() => {
-    if (names.length > 0) {
-      const arr = new Array(names.length).fill(true);
-      setCollapsedArray(arr);
-    }
-  }, [names]);
+    const arr = new Array(topics.length).fill(true);
+    setCollapsedArray(arr);
+  }, [topics]);
 
   return (
     <ListWrapper>
-      {names.map((nameItem: iNestedName, index) => {
-        let nameStr = getNameStr(nameItem, collapsedArray[index]);
+      {topics.map((item: iAtlassianResponse, index) => {
+        let topicstr = getTopicListStr(item, collapsedArray[index]);
 
         return (
-          <li key={nameItem.id}>
+          <li key={item.id}>
             <p
               onClick={(e) => {
                 handleClick(e, index);
               }}
             >
-              {nameStr}
+              {topicstr}
             </p>
             {collapsedArray[index] !== undefined &&
               !collapsedArray[index] &&
-              nameItem.children && <NamesList names={nameItem.children} />}
+              item.children && <TopicsList topics={item.children} />}
           </li>
         );
       })}
@@ -63,4 +64,4 @@ const NamesList = ({ names }: iNamesList) => {
   );
 };
 
-export default NamesList;
+export default TopicsList;

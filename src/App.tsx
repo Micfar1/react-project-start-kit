@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getNames } from "./apis/NamesAPI";
-import { iNestedNames } from "./models/NestedNames";
-import NamesList from "./components/organisms/names-list";
+import { getAtlassionData } from "./apis/AtlassianAPI";
+import { iAtlassianResponses } from "./models/Atlassian";
+import NamesList from "./components/organisms/topics-list";
 
 const AppWrapperDiv = styled.div`
   height: 100%;
@@ -14,17 +14,17 @@ const AppWrapperDiv = styled.div`
 `;
 
 function App() {
-  const [names, setNames] = useState<iNestedNames>([]);
+  const [atlassianItems, setAtlassianItems] = useState<iAtlassianResponses>([]);
 
   useEffect(() => {
-    getNames().then((namesResponse) => {
-      setNames(namesResponse);
+    getAtlassionData().then((atlassianResponse) => {
+      setAtlassianItems(atlassianResponse);
     });
   }, []);
 
   return (
     <AppWrapperDiv className="App">
-      <NamesList names={names} />
+      <NamesList topics={atlassianItems} />
     </AppWrapperDiv>
   );
 }
