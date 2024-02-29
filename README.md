@@ -2,11 +2,6 @@
 
 A starter kit that can be used for future react projects. The goal is to have a repo that can be forked to quickly start programming on new projects with the following tech stack: React, Redux, Webpack, Styled-Component, Internationalization Support, Automated test support and good production optimization and tooling.
 
-// current version of main stream browsers
-// responsiveness: touch devices (small)
-// no need to write render unit tests.
-// would no
-
 # Strategy
 
 - [x] Create models in typescript.
